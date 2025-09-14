@@ -1,0 +1,36 @@
+# Load Balancer Configuration
+load_balancer:
+  host: "0.0.0.0"
+  port: 8080
+  algorithm: "round_robin"  # round_robin, weighted_round_robin, least_connections
+  health_check_interval: 5  # seconds
+  timeout: 10  # seconds
+
+# Backend servers
+servers:
+  - name: "server1"
+    host: "127.0.0.1"
+    port: 8001
+    weight: 1
+    health_check_path: "/health"
+    enabled: true
+  
+  - name: "server2"
+    host: "127.0.0.1"
+    port: 8002
+    weight: 2
+    health_check_path: "/health"
+    enabled: true
+  
+  - name: "server3"
+    host: "127.0.0.1"
+    port: 8003
+    weight: 1
+    health_check_path: "/health"
+    enabled: true
+
+# Monitoring
+monitoring:
+  enabled: true
+  port: 9090
+  metrics_path: "/metrics"
